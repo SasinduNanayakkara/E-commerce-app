@@ -5,6 +5,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import Facebook from '@mui/icons-material/Facebook';
+import { MailOutline, Phone, Room } from '@material-ui/icons';
 
 const Container = styled.div`
 display:flex;
@@ -63,6 +64,18 @@ flex-direction:column;
 padding:20px;
 `;
 
+const ContactItem = styled.div`
+margin-bottom:20px;
+display:flex;
+align-items:center;
+`;
+
+const Payment = styled.img`
+width: 15%;
+background-color:none;
+padding-right:20px;
+`;
+
 const Footer = () => {
     return (
         <Container>
@@ -102,8 +115,20 @@ const Footer = () => {
             <Right>
                 <Title>Contact</Title>
                 <ContactItem>
+                    <Room style={{marginRight:"10px"}}/>
                     122, Kandy Road, Kiribathgoda
                 </ContactItem>
+                <ContactItem>
+                    <Phone style={{marginRight:"10px"}}/>
+                    +94 11 2 234 890
+                </ContactItem>
+                <ContactItem>
+                    <MailOutline style={{marginRight:"10px"}}/>
+                    ladyjfashion@email.com
+                </ContactItem>
+                <Payment src="https://e7.pngegg.com/pngimages/698/862/png-clipart-credit-card-logo-encapsulated-postscript-visa-eps-blue-cdr.png"/>
+                <Payment src="https://newsupdatetimes.com/wp-content/uploads/2020/08/mastercard-png.jpg"/>
+                <Payment src="https://img.favpng.com/21/5/13/american-express-logo-credit-card-payment-png-favpng-8tx6epUgjhQeNcJFzp5fhKgZQ.jpg"/>
             </Right>
         </Container>
     )
