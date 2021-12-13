@@ -6,9 +6,11 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import Facebook from '@mui/icons-material/Facebook';
 import { MailOutline, Phone, Room } from '@material-ui/icons';
+import mobile from '../Responsive';
 
 const Container = styled.div`
 display:flex;
+${mobile({flexDirection:"column"})};
 `;
 
 const Logo = styled.h1`
@@ -36,6 +38,7 @@ margin:20px 0px;
 const Center = styled.div`
 flex:1;
 padding:20px;
+${mobile({display:"none"})};
 `;
 const Right = styled.div`
 flex:1;
@@ -80,7 +83,7 @@ const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo>Sasindu</Logo>
+                <Logo>Lady J</Logo>
                 <Description>Below, we take a close look at what makes up an effective paragraph and explain how to write one that suits your needs. We also cover some advanced tips. But first, let’s start with the fundamentals. </Description>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
