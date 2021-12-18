@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
@@ -40,6 +41,9 @@ const Option = styled.option`
 `;
 
 const ProductList = () => {
+
+    const location = useLocation();
+    console.log(location);
     return (
         <Container>
             <Announcement/>
