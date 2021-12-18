@@ -6,11 +6,12 @@ import Product from "./Pages/Product";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Cart from "./Pages/Cart";
+import PaymentForm from "./components/PaymentForm";
 
 const App =() => {
   return(
     <div>
-      <Home/>
+      <PaymentForm/>
       
     </div>
   ) 
