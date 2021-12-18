@@ -27,19 +27,22 @@ export const categories = [
     {
         id:1,
         img:"https://static-01.daraz.lk/p/828e5f424008f38dbe6dea0587018cda.jpg",
-        title: "SHIRT STYLE"
+        title: "SHIRT STYLE",
+        cat: "woman"
     },
 
     {
         id:2,
         img:"https://i.pinimg.com/736x/8b/55/2d/8b552dd720b128408a51e1de79bf9e5b--badass-t-shirts-man-flowers.jpg",
-        title: "LOUNGWARE LOVE"
+        title: "LOUNGWARE LOVE",
+        cat: "man"
     },
 
     {
         id:3,
         img:"https://i.pinimg.com/originals/83/6b/40/836b405bb1991921a8c4dbedf449af92.jpg",
-        title: "LIGHT JACKETS"
+        title: "LIGHT JACKETS",
+        cat: "coat"
     },
 ];
 
