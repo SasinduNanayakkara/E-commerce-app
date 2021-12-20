@@ -8,34 +8,40 @@ import Login from "./Pages/Login";
 import Cart from "./Pages/Cart";
 import PaymentForm from "./components/PaymentForm";
 import stripeContainer from "./components/stripeContainer";
+import Products from "./components/Products";
 import {
   BrowserRouter as Router,
-  Redirect,
+  Switch,
   Route,
-  Routes,
-  Navigate,
-  Switch
+  Link,
+  Redirect
 } from "react-router-dom";
-import Products from "./components/Products";
-
 
 const App =() => {
   const user = true;
+  
   return(
     <Router>
-      <Routes>
-      {/* latest react dom version */}
-        <Route path="/" element={<Home/>} /> 
-        <Route path="/products/:category" element={<ProductList/>} />
-        <Route path="/product/:id" element={<Product/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
-        <Route path="/register" element={user ? <Navigate to="/"/> : <Register/>} />
-
-
-
-      </Routes>
-      
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/products/:category">
+          <ProductList/>
+        </Route>
+        <Route path="/product/:id">
+          <Product/>
+        </Route>
+        <Route path="/cart">
+          <Cart/>
+        </Route>
+        <Route path="/register">
+        {user ? <Redirect to="/"/> : <Register/>}
+        </Route>
+        <Route path="/login">
+          {user ? <Redirect to="/"/> : <Login/>}
+        </Route>
+      </Switch>
     </Router>
   ) 
 };
