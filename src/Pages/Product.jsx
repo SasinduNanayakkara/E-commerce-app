@@ -1,11 +1,14 @@
 import { Add, Remove } from '@material-ui/icons';
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import NewsLetter from '../components/NewsLetter';
 import mobile from '../Responsive';
+import { publicRequest } from './RequestMethod';
 
 const Container = styled.div`
 
@@ -102,44 +105,77 @@ align-items:center;
 font-weight:700;
 `;
 const Product = () => {
+
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
+    const [quantity, setquantity] = useState(1);
+    const [color, setColor] = useState("");
+    const [size, setSize] = useState("");
+
+    useEffect(() =>{
+        const getProduct = async () =>{
+            try{
+                const res = await publicRequest.get("/products/find/"+id);
+                setProduct(res.data);
+            }
+            catch(err){
+
+            }
+        }
+        getProduct()
+    },[id]);
+
+    const handleQuantity = (type) =>{
+        if (type === "dec") {
+            quantity> 1 && setquantity(quantity - 1);
+        }
+        else{
+            setquantity(quantity + 1);
+
+        }
+    };
+
+    const handleClick = () =>{ 
+        //update cart
+        
+    }
+
     return (
         <Container>
             <Announcement/>
             <NavBar/>
                 <Wrapper>
                     <ImageContainer>
-                        <Image src="https://assets.ajio.com/medias/sys_master/root/h09/hcd/12085139111966/-1117Wx1400H-440794191-mediumblue-MODEL.jpg"/>
+                        <Image src= {product.img}/>
                     </ImageContainer>
                     <InfoContainer>
-                        <Title>Denim Jumpsuit</Title>
-                        <Description>Paragraph development begins with the formulation of the controlling idea. This idea directs the paragraph’s development. Often, the controlling idea of a paragraph will appear in the form of a topic sentence. In some cases, you may need more than one sentence to express a paragraph’s controlling idea.</Description>
-                        <Price>Rs. 2800/=</Price>
+                        <Title>{product.title}</Title>
+                        <Description>{product.description}</Description>
+                        <Price>Rs. {product.price}/=</Price>
                         <FilterContainer>
                             <Filter>
                                 <FilterTitle>Color</FilterTitle>
-                                <FilterColor color="black"/>
-                                <FilterColor color="darkblue"/>
-                                <FilterColor color="gray"/>
+                                {product.color?.map((c) =>(
+                                    <FilterColor color={c} key={c} onClick={() => setColor(c)}/>
+                                ))}
                             </Filter>
                             <Filter>
                                 <FilterTitle>Size</FilterTitle>
-                                <FilterSize>
-                                    <FilterSizeOption>XS</FilterSizeOption>
-                                    <FilterSizeOption>S</FilterSizeOption>
-                                    <FilterSizeOption>M</FilterSizeOption>
-                                    <FilterSizeOption>L</FilterSizeOption>
-                                    <FilterSizeOption>XL</FilterSizeOption>
-                                    <FilterSizeOption>XXL</FilterSizeOption>
+                                <FilterSize onChange={(e) => setSize(e.target.value)}>
+                                    {product.size?.map((s) =>(
+                                        <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                                    ))}
                                 </FilterSize>
                             </Filter>
                         </FilterContainer>
                         <AddContainer>
                             <AmountContainer>
-                                <Remove/>
+                                <Remove onClick={() => handleQuantity("dec")}/>
                                 <Amount>1</Amount>
-                                <Add/>
+                                <Add onClick={() => handleQuantity("inc")}/>
                             </AmountContainer>
-                            <Button>ADD TO CART</Button>
+                            <Button onClick={handleClick}>ADD TO CART</Button>
                         </AddContainer>
                     </InfoContainer>
                 </Wrapper>
