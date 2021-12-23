@@ -4,6 +4,7 @@ import { categories } from '../data'
 import CategoryItem from './CategoryItem'
 import mobile from '../Responsive'
 
+//container styling
 const Container = styled.div`
 display:flex;
 padding:20px;

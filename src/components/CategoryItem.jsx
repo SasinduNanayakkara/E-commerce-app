@@ -3,6 +3,7 @@ import React from 'react'
 import mobile from '../Responsive';
 import { BrowserRouter, Link } from 'react-router-dom';
 
+//styling
 const Container = styled.div`
 flex:1;
 margin:3px;
@@ -46,7 +47,7 @@ const CategoryItem = ({item}) => {
     return (
         <Container>
             <BrowserRouter>
-                <Link to={`/products/${item.cat}`}>
+                <Link to={`/products/${item.cat}`}> {/*link to the products(React DOM)*/}
                 <Image src={item.img}/>
                 <Info>
                     <Title>{item.title}</Title>

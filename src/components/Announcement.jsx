@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
+//container styles
 const Container = styled.div`
 height:30px;
 background-color:teal;
